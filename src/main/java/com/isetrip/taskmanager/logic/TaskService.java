@@ -7,7 +7,6 @@ import com.isetrip.taskmanager.data.enums.TaskStatus;
 import com.isetrip.taskmanager.exception.BadRequestException;
 import com.isetrip.taskmanager.exception.NotFoundException;
 import com.isetrip.taskmanager.web.bodies.requests.TaskRequest;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -51,17 +50,15 @@ public class TaskService implements ITaskService {
     @Override
     public Task update(Long id, TaskRequest body) throws NotFoundException {
         Task task = get(id);
-        Task updatedTask = mapTaskRequestToTask(body);
-        task.setName(updatedTask.getName());
-        task.setDescription(updatedTask.getDescription());
-        task.setStatus(updatedTask.getStatus());
-        task.setPriority(updatedTask.getPriority());
+        if (body.getName() != null)
+            task.setName(body.getName());
+        if (body.getDescription() != null)
+            task.setDescription(body.getDescription());
+        if (body.getStatus() != null)
+            task.setStatus(body.getStatus());
+        if (body.getPriority() != null)
+            task.setPriority(body.getPriority());
         return task;
-    }
-
-    private Task mapTaskRequestToTask(TaskRequest taskRequest) {
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(taskRequest, Task.class);
     }
 
     @Override
