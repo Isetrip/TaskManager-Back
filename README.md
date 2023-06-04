@@ -10,6 +10,8 @@ Develop a simple Task Management System using Java and the Spring Boot framework
 4. The user must be able to change the status of the task (e.g. mark the task as completed).</br>
 5. The user should be able to delete tasks.
 
+https://app.swaggerhub.com/apis/ISETRIP_1/TaskManager/1.0.0
+
 ### Implementation requirements:
 
 1. Use the Spring Boot framework to create a RESTful API.</br>
