@@ -6,5 +6,5 @@ import java.util.List;
 
 @Repository
 public interface ITaskRepository extends JpaRepository<Task, Long> {
-    List<Task> findAll();
+
 }
